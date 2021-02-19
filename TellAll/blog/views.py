@@ -16,6 +16,7 @@ class AboutView(TemplateView):
 
 class BlogPostListView(ListView):
     model = BlogPost
+    template_name = 'blog/blogpost_list.html'
 
     def get_queryset(self):
         return BlogPost.objects.filter(publish_date__lte=timezone.now()).order_by('-publish_date')         # __lte = <=   |  - infront of published_date orders by descending
@@ -23,11 +24,13 @@ class BlogPostListView(ListView):
 
 class BlogPostDetailView(DetailView):
     model = BlogPost
+    template_name = 'blog/post_detail.html'
 
 
 class CreateBlogPostView(LoginRequiredMixin, CreateView):
     model = BlogPost
     login_url = '/login/'
+    template_name = 'blog/post_form.html'
     redirect_field_name = 'blog/post_detail.html'
 
     form_class = BlogPostForm

@@ -11,7 +11,7 @@
 
     <form class="form-signin" action="{% url 'login' %}" method="POST">
         {% csrf_token %}
-            {% form.as_p %}
+            {{ form.as_p }}
 
             <h2 class="form-signin-heading">Please sign in</h2>
 
